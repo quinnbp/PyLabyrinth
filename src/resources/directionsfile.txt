@@ -1,0 +1,10 @@
+Room - type 'look' to have the room described again
+Navigation - type 'north' or 'go north' to go north, the same applies for south/east/west
+Items - to take an item, type 'take' + the name of the item; 
+	to drop an item, type 'drop' + the name of the item
+Notebook - type 'note' or 'write' to take a note; 
+	   type 'mark' to mark the room you are in; 
+	   type 'notebook' to review your inventory, marks, and notes
+
+Type 'help' to review these directions
+		   
