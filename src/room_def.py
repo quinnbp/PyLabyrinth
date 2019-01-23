@@ -1,15 +1,21 @@
 class Room:
-    """ Room class for Labyrinth. Arguments - name, room_coords, room_exits, mark, contents, room_str """
-    def __init__(self, name, room_coords, room_exits, contents = [], room_str = '', alternate_str='', mark = '', message=''):
-        self.name = str(name) ## used for identifying plinth rooms/POI
-        self.text = str(room_str) ## text for first visit
-        self.contents = contents ## list of items in room
-        self.mark = str(mark) ## mark added by player
-        self.exits = room_exits ## exits from room
-        self.alt = str(alternate_str) ## text for subsequent visits
-        self.msg = message ## separate message string for player notebook
+    """
+    Room class for PyLabyrinth.
+
+    :Date: 23-1-2019
+    :Authors: qbp
+    :Version: 1.0
+    """
+    def __init__(self, name, room_coords, room_exits, contents=[], room_str='', alternate_str='', mark='', message=''):
+        self.name = str(name)  # used for identifying plinth rooms/POI
+        self.text = str(room_str)  # text for first visit
+        self.contents = contents  # list of items in room
+        self.mark = str(mark)  # mark added by player
+        self.exits = room_exits  # exits from room
+        self.alt = str(alternate_str)  # text for subsequent visits
+        self.msg = message  # separate message string for player notebook
         
-        self.xyz = room_coords ## list of room coords (z is the floor, starting at 0)
+        self.xyz = room_coords  # list of room coords (z is the floor, starting at 0)
         self.x = int(room_coords[0])
         self.y = int(room_coords[1])
         self.z = int(room_coords[2])
@@ -19,7 +25,7 @@ class Room:
     def __str__(self):
         return "Room(" + str(self.name) + " : " + str(self.xyz) + " : " + str(self.exits) + " : " + str(self.contents) + ")"
     
-    def getName(self): ## accessor functions
+    def getName(self):  # accessor functions
         return self.name
     
     def getCoords(self):
@@ -52,7 +58,7 @@ class Room:
     def getMsg(self):
         return self.msg
 
-    def setContents(self, newinvlist): ## replacer functions
+    def setContents(self, newinvlist):  # mutator functions
         self.contents = newinvlist
 
     def setText(self, string):
@@ -83,19 +89,19 @@ class Room:
     def entered(self):
         self.enter = True
         
-    def declareExits(self): ## returns 'pretty' exit string to show player
+    def declareExits(self):  # returns 'pretty' exit string to show player
         exitstring = ''
-        for n in range(len(self.exits)): ## converts exit list to words
+        for n in range(len(self.exits)):  # converts exit list to words
             if self.exits[n] == 'n':
-                exitstring = exitstring + ' north'
+                exitstring = exitstring + ' North'
             elif self.exits[n] == 'w':
-                exitstring = exitstring + ' west' 
+                exitstring = exitstring + ' West'
             elif self.exits[n] == 'e':
-                exitstring = exitstring + ' east' 
+                exitstring = exitstring + ' East'
             elif self.exits[n] == 's':
-                exitstring = exitstring + ' south'            
+                exitstring = exitstring + ' South'
             
-            if n < (len(self.exits) - 2): ## grammar parser
+            if n < (len(self.exits) - 2):  # grammar parser
                 exitstring = exitstring + ','
             elif n == (len(self.exits) - 2):
                 exitstring = exitstring + ' and'
@@ -107,15 +113,11 @@ class Room:
         else:
             return "There is an exit to the" + exitstring
 
-    def addToContents(self, item): ## for some reason, this doesn't work
+    def addToContents(self, item):  # for some reason, this doesn't work
         self.contents.append(str(item))
     
-    def switchToAlt(self): ## switch from initial room text to secondary
+    def switchToAlt(self):  # switch from initial room text to secondary
         self.text = self.alt
         
-    def addToExits(self, string): ## add a new exit to the list
+    def addToExits(self, string):  # add a new exit to the list
         self.exits.append(string)
-        
-             
-                
-    

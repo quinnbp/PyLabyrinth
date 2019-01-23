@@ -1,31 +1,29 @@
-from room_def import *
+from room_def import Room
 
-## file = open('indata.txt', 'r') ## Global vars
+"""
+File parsing functions for PyLabyrinth as used by floor functions
 
-def parse(file): ## Takes data file
+:authors: qbp
+:version: 1.0
+:date: 23-1-2019
+"""
+
+def parse(file):
+    """
+    Parses file into a list of Room objects, see room_def
+
+    :param file: File to be parsed into rooms
+    :return: List of Room objects
+    """
     allrooms = []
-    ln = 0; rg = 0
-    for eachline in file:
+    ln = 0; passcount = 0
+    for line_raw in file:
         ln = ln + 1
-        line = eachline.split('/')
+        line = line_raw.split('/')
         line.pop()
         
-        if line == [] and rg == 0: ## Tests of file parsing
-            ## print('Rooms generated.')
-            rg = 1
-        elif line == [] and rg == 1:
-            ## print('Text generated.')
-            rg = 2
-        elif line == [] and rg == 2:
-            ## print('Contents generated.')
-            rg = 3
-        elif line == [] and rg == 3:
-            ## print('Alternates generated.')
-            rg = 4
-        elif line == [] and rg == 4:
-            ## print('Messages generated.')
-            rg = 5
-                        
+        if not line:
+            passcount += 1
         elif line[0] == 'r':
             r = roomParse(line[1:])
             allrooms.append(r)
@@ -44,12 +42,16 @@ def parse(file): ## Takes data file
         else:
             print("Invalid at line " + str(ln) + ".")
             
-#     for room in allrooms: ## show rooms on startup
-#         print(str(room))
-            
     return allrooms
 
-def roomParse(line): ## Takes line and generates room
+
+def roomParse(line):
+    """
+    Generates a single room from one line of the file
+
+    :param line: String line of file
+    :return: Room object, see room_def
+    """
     name = line[0]
     
     coordlist = []
@@ -63,7 +65,15 @@ def roomParse(line): ## Takes line and generates room
  
     return Room(name, coordlist, exitlist)
 
-def getRoom(coords, roomlist): ## Takes coords (list or str) and roomlist and finds room with property coords
+
+def getRoom(coords, roomlist):
+    """
+    Gets a room by coordinates for modification
+
+    :param coords: List of three ints, room coordinates
+    :param roomlist:
+    :return:
+    """
     if isinstance(coords, str):
         coordinates = []
         for item in coords:
@@ -76,4 +86,3 @@ def getRoom(coords, roomlist): ## Takes coords (list or str) and roomlist and fi
             return room
         
     return False
-        

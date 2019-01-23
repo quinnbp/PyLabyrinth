@@ -1,5 +1,10 @@
 def intro():
-    file = open('resources/introfile.txt', 'r')
+    """
+    Function to parse and display introduction text file and get player name
+
+    :return: String, name
+    """
+    file = open('resources/intro.txt', 'r')
     printstr = ''
     for line in file:
         printstr = printstr + str(line)
@@ -7,7 +12,7 @@ def intro():
     
     print(printstr)
         
-    file2 = open('resources/directionsfile.txt', 'r')
+    file2 = open('resources/directions.txt', 'r')
     printstr2 = ''
     for line in file2:
         printstr2 = printstr2 + str(line)
@@ -26,12 +31,17 @@ def intro():
     
     return charname
 
+
 def directions():
-    file2 = open('resources/directionsfile.txt', 'r')
+    """
+    Function to parse and display help text file
+
+    :return: None
+    """
+    file2 = open('resources/directions.txt', 'r')
     printstr2 = ''
     for line in file2:
         printstr2 = printstr2 + str(line)
     file2.close()
     
     print('\n' + printstr2 + '\n')
-    

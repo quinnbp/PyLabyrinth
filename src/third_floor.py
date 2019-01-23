@@ -1,19 +1,27 @@
 from file_parser import parse, getRoom
-from userin_defs import takeInput
+from io_defs import takeInput
+
 
 def thirdFloor(player, startroomstr):
-    file = open('floor_files/thirdfloor.txt', 'r') ## parses file to generate rooms
+    """
+        Function taking character object through the third floor rooms and puzzle
+
+        :param player: Character object, see char_def
+        :param startroomstr: List of 3 ints, starting coordinates
+        :return: Character object, see char_def
+    """
+    file = open('floor_files/thirdfloor.txt', 'r')  # parses file to generate rooms
     labrooms = parse(file)
     file.close()
     firstroom = getRoom(startroomstr, labrooms) 
     
-    player.setPos(firstroom) ## puts player in first room
+    player.setPos(firstroom)  # puts player in first room
     
     end = False
-    while end == False:   ## keeps offering inputs for nav
-        current = player.getPos() ## current room
+    while not end:    # keeps offering inputs for nav
+        current = player.getPos()  # current room
         
-        if current.enter == False: ## checks against past rooms
+        if not current.enter:  # checks against past rooms
             current.entered()
             print('\n')
             
@@ -30,7 +38,7 @@ def thirdFloor(player, startroomstr):
         elif (current.getCoords() == [1, 2, 2]) and ('statue of perseus' in player.getInv()):
             current.switchToAlt()
         
-        if (current.getCoords() == [2, 1, 2]) and (contains(player.getInv(), 'and', 'statue of hercules', 'statue of perseus', 'statue of odesseyus') == True): ## end condition
+        if (current.getCoords() == [2, 1, 2]) and (contains(player.getInv(), 'and', 'statue of hercules', 'statue of perseus', 'statue of odesseyus') == True):  # end condition
             current.switchToAlt()
             print(current.getText())
             
@@ -38,7 +46,7 @@ def thirdFloor(player, startroomstr):
             
             if userin == 'y' or userin == 'yes':
                 print("You try the puzzle...")
-                puzres = heroPuzzle(current, player)
+                puzres = heroPuzzle()
             
                 if puzres == True:
                     current.addToExits('n')
@@ -60,7 +68,7 @@ def thirdFloor(player, startroomstr):
             else:
                 print("You decide to come back later.")
                 
-                result = takeInput(current, player) ## eventual loop to new position
+                result = takeInput(current, player)  # eventual loop to new position
                 newroom = getRoom(result, labrooms)
                 player.setPos(newroom)
                 
@@ -75,13 +83,22 @@ def thirdFloor(player, startroomstr):
                 player.setPos(newroom)
             
         else: 
-            result = takeInput(current, player) ## eventual loop to new position
+            result = takeInput(current, player)  # eventual loop to new position
             newroom = getRoom(result, labrooms)
             player.setPos(newroom)
             
-    return player ## when floor is complete
+    return player  # when floor is complete
 
-def contains(alist, mod, *strings): ## function to check if an item appears in a list (with and/or)
+
+def contains(alist, mod, *strings):
+    """
+    Function to check if an item appears in a list, mod for and/or
+
+    :param alist: List to check
+    :param mod: String, and/or
+    :param strings: Strings to check
+    :return: Boolean
+    """
     if mod == 'and':
         for string in strings:
             if string not in alist:
@@ -93,8 +110,14 @@ def contains(alist, mod, *strings): ## function to check if an item appears in a
             if string in alist:
                 return True
         return False
-    
-def heroPuzzle(current, player): ## deals with solving the puzzle
+
+ 
+def heroPuzzle():
+    """
+    Function allowing player to interact with and solve matching puzzle
+
+    :return: Boolean
+    """
     actual = {'Nemean Lion':'statue of hercules', 'Medusa':'statue of perseus', 'Cyclops':'statue of odesseyus'}
     actual2 = {'Nemean Lion':'hercules', 'Medusa':'perseus', 'Cyclops':'odesseyus'}
     playerdict = {'Nemean Lion':'init', 'Medusa':'init2', 'Cyclops':'init3'}
@@ -109,10 +132,17 @@ def heroPuzzle(current, player): ## deals with solving the puzzle
     else:
         return False
     
+
 def remove(item, alist):
+    """
+    Function to remove an item from a list
+
+    :param item: Item to remove
+    :param alist: List to remove from
+    :return: List, modified list
+    """
     newlist = []
     for thing in alist:
         if thing != item:
             newlist.append(thing)
     return newlist
-        

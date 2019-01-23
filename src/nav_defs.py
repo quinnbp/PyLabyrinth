@@ -1,4 +1,11 @@
-def navigate(string, char):
+def navigate(direction, char):
+    """
+    Function allowing the player to change rooms, checks for bad exits
+
+    :param direction: String, player input for direction choice
+    :param char: Character, see char_def
+    :return: List of Ints, new current room coordinates
+    """
     room = char.getPos()
     posdirect = room.getExits()
     coords = room.getCoords()
@@ -6,29 +13,27 @@ def navigate(string, char):
     y = coords[1]
     z = coords[2]
 
-    if string == 'north': ## converts all inputs to single letter
-        string2 = 'n'
-    elif string == 'west':
-        string2 = 'w'
-    elif string == 'east':
-        string2 = 'e'
-    elif string == 'south':
-        string2 = 's'
+    if direction == 'north':  # converts all inputs to single letter
+        direct_a = 'n'
+    elif direction == 'west':
+        direct_a = 'w'
+    elif direction == 'east':
+        direct_a = 'e'
+    elif direction == 'south':
+        direct_a = 's'
     else:
-        string2 = string
+        direct_a = direction
         
-    if string2 not in posdirect: ## check against available exits
+    if direct_a not in posdirect:  # check against available exits
         return "The room has no door in that direction."
-    else: ## generates new coords based on direction on grid
-        if string2 == 'n':
+    else:  # generates new coords based on direction on grid
+        if direct_a == 'n':
             newcoords = [x, (y + 1), z]
-        elif string2 == 'e':
+        elif direct_a == 'e':
             newcoords = [(x+1), y, z]
-        elif string2 == 'w':
+        elif direct_a == 'w':
             newcoords = [(x-1), y, z]
-        elif string2 == 's':
+        else:  # string2 == 's'
             newcoords = [x, (y-1), z]
             
         return newcoords
-            
-        
