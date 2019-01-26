@@ -6,20 +6,33 @@ class Room:
     :Authors: qbp
     :Version: 1.0
     """
-    def __init__(self, name, room_coords, room_exits, contents=[], room_str='', alternate_str='', mark='', message=''):
-        self.name = str(name)  # used for identifying plinth rooms/POI
-        self.text = str(room_str)  # text for first visit
-        self.contents = contents  # list of items in room
-        self.mark = str(mark)  # mark added by player
-        self.exits = room_exits  # exits from room
-        self.alt = str(alternate_str)  # text for subsequent visits
-        self.msg = message  # separate message string for player notebook
+    def __init__(self, name, room_coords, room_exits, contents=[], room_str='', alternate_str='', mark='', message='',
+                 special_str=''):
+        """
+        Initializes a new room.
+
+        :param name: String, identification for points of interest
+        :param room_coords: List of ints, coordinates for the room within the maze
+        :param room_exits: List of chars, directional exits from the room
+        :param contents: List of strings, items contained within room
+        :param room_str: String, text to display on first entry
+        :param alternate_str: String, text to display on subsequent entries
+        :param mark: String, mark left by player in room, default ''
+        :param message: String, message left for player, default ''
+        :param special_str: String, special additional text switch for interactable rooms, default ''
+        """
+        self.name = str(name) 
+        self.contents = contents
+        self.mark = str(mark)
+        self.exits = room_exits
+        self.msg = message
+
+        self.text = str(room_str)
+        self.alt = str(alternate_str)
+        self.special = str(special_str)
         
-        self.xyz = room_coords  # list of room coords (z is the floor, starting at 0)
-        self.x = int(room_coords[0])
-        self.y = int(room_coords[1])
-        self.z = int(room_coords[2])
-        
+        self.xyz = room_coords
+
         self.enter = False
         
     def __str__(self):
@@ -31,17 +44,8 @@ class Room:
     def getCoords(self):
         return self.xyz
     
-    def getX(self):
-        return self.x
-    
-    def getY(self):
-        return self.y
-    
-    def getZ(self):
-        return self.z
-    
     def getFloor(self):
-        return self.z
+        return self.xyz[2]
     
     def getExits(self):
         return self.exits
