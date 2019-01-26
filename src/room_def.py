@@ -4,7 +4,7 @@ class Room:
 
     :Date: 23-1-2019
     :Authors: qbp
-    :Version: 1.0
+    :Version: 1.1
     """
     def __init__(self, name, room_coords, room_exits, contents=[], room_str='', alternate_str='', mark='', message='',
                  special_str=''):
@@ -21,7 +21,7 @@ class Room:
         :param message: String, message left for player, default ''
         :param special_str: String, special additional text switch for interactable rooms, default ''
         """
-        self.name = str(name) 
+        self.name = str(name)
         self.contents = contents
         self.mark = str(mark)
         self.exits = room_exits

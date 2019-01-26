@@ -27,7 +27,8 @@ def main():
     # calls floor functions in order
     player = firstFloor(player, '110')  # TODO: update floor functions to inheritance structure
     player = secondFloor(player, '111')
-    player = thirdFloor(player, '002')
+    thirdFloor(player, '002')
     # further floors
+
 
 main()
