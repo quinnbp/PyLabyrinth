@@ -1,0 +1,7 @@
+Welcome to Labyrinth. 
+Developed by IntegerSpin starting 11-23-2014. 
+v.1.1 (alpha)
+
+Your goal is to escape the labyrinth.
+On each floor there will be puzzles to solve and items to find. If you are stuck, keep exploring.
+The puzzles and characters are loosely based on Greek mythology.

@@ -1,0 +1,34 @@
+r/plinth/000/n/
+r/name/100/ne/
+r/name/200/nw/
+r/name/010/nes/
+r/start/110/ws/
+r/floor2/210/s/
+r/name/020/es/
+r/name/120/we/
+r/torchrm/220/w/
+
+t/000/There is a pedestal in the center of the room. It glows with a strange, eerie blue light. BRKIt seems to be waiting for something... but you can see no way to use it now./
+t/210/There is a staircase leading downwards. It's too dark to see, and you don't dare to descend until you have a light source./
+t/220/There is a lantern in the corner of the room. You examine it: it is lit and filled with oil and could help light the way. Do you take it?/
+t/100/You enter the room. There is nothing here./
+t/200/You enter the room. There is nothing here./
+t/010/You enter the room. There is nothing here./
+t/110/You come slowly to your senses in a room dimly lit by flickering candle flames. BRKYou have no memory of arriving here, nor of what circumstances caused you to be unconscious.BRKBeyond your own shuffling movements, the room is silent. A quick look around reveals that the room BRKis empty, and that you are alone. For some reason, you get the feeling that you are deep underground. BRKThe only items in your possession are a notebook and a bag. How did you get here?/
+t/020/You enter the room. There is nothing here, but upon closer inspection, you see that there are 13 tally marks scratched into the north wall. BRKWas someone else here? You decide to take note of this./
+t/120/You enter the room. There is nothing here./
+
+c/220/lantern/
+c/000/plinth/
+
+at/220/This is where the lantern was./
+at/110/This is where you woke up. There is nothing in this room./
+at/000/This is where the strange, glowing pedestal is./
+at/210/There is a dark staircase leading downwards to the east. Equipped with your lantern, you could go down. It seems the only way out./
+at/100/You enter the room. There is nothing here./
+at/200/You enter the room. There is nothing here./
+at/010/You enter the room. There is nothing here./
+at/020/This is where the strange tally marks are./
+at/120/You enter the room. There is nothing here./
+
+m/020/(strange tally marks)/
