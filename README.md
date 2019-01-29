@@ -12,6 +12,8 @@ This project has three overall goals:
 
 `python3 main.py`
 
+The most recent stable release will be give under src/. All other folders contain in-progress or unstable versions. 
+
 ## File Structure
 
 ### char_def.py
