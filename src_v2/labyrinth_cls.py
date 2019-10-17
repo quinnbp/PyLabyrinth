@@ -1,4 +1,5 @@
 from room_def import Room
+from navigator_cls import Navigator
 
 
 class Labyrinth:
@@ -17,14 +18,46 @@ class Labyrinth:
 
         :param fpath: Filepath to data defining construction of labyrinth
         """
-        file = open('demo.txt', 'r')  # open, parse, and close data file
+        file = open(fpath, 'r')  # open, parse, and close data file
         self.roomDict = self.parse(file)
         file.close()
 
         # TODO: handle specials
+        self.specials = []
         # TODO: implement direction handler (simple)
 
+        # setup for object fields
         self.player = player
+        self.navigator = Navigator()
+
+        # setup for data fields
+        self.gameSolved = False  # catches game end
+        self.reenterstr = "You have been here before."
+
+    def play(self):
+        """
+        Top level play function governing the game loop
+        :return: None
+        """
+        while not self.gameSolved:
+            coords = self.player.getPos()  # gets coords of player
+            currentRoom = self.roomDict[coords]  # finds that room in the structure
+
+            # print room to screen
+            # TODO: functionalize this?
+            if currentRoom.enter:
+                print(self.reenterstr)
+            else:
+                currentRoom.entered()  # TODO: implement alt text better
+            print()
+            print(currentRoom.getText())
+            print(currentRoom.declareExits())
+
+            if coords in self.specials:  # handles special cases (puzzle rooms, etc)
+                self.runSpecial(coords)
+            else:  # standard case for navigation
+                newLocation = self.navigator.takeInput(currentRoom)  # pass room object, get player input
+                self.player.setPos(newLocation)  # assigns new coords to player
 
     @staticmethod
     def parse(file):
@@ -70,5 +103,10 @@ class Labyrinth:
                     else:
                         print("Invalid at line " + str(ln) + ".")
 
-        print("Processed " + str(ln) + " lines for " + str(len(allrooms.keys())) + " rooms.")
+        print("[DEBUG] Processed " + str(ln) + " lines for " + str(len(allrooms.keys())) + " rooms.")
+        print()
         return allrooms
+
+    def runSpecial(self, coords):
+        pass
+

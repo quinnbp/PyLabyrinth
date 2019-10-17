@@ -6,17 +6,19 @@ class Character:
     :version: 1.0
     :date: 23-1-2019
     """
-    def __init__(self, name, inventory, room):
+    def __init__(self, name, inventory, currentcoords):
         """
         Initializes new character instance
 
-        :param name: User-given character name
+        :param name: String, user given character name
         :param inventory: String list of objects currently held
-        :param room: Current position in the maze
+        :param currentcoords: Room object representing position in maze
         """
         self.name = name
         self.inv = inventory
-        self.pos = room
+        self.pos = currentcoords
+
+        self.threadHistory = []
             
     def __str__(self):
         """
@@ -25,6 +27,20 @@ class Character:
         """
         return 'Character(' + str(self.name) + " : " + str(self.pos.xyz) + ")"
     
+    def getThreadHistory(self):
+        """
+        Returns entire thread history
+        :return: List<int> of thread history
+        """
+        return self.threadHistory
+
+    def getLastThread(self):
+        """
+        Pops from the thread history and returns it
+        :return: Int representation of the coordinates of most recent room in thread history
+        """
+        return self.threadHistory.pop()
+
     def getName(self):
         """
         Gets character's name
@@ -39,17 +55,10 @@ class Character:
         """
         return self.inv
     
-    def getRoom(self):
-        """
-        Gets characters current room position
-        :return: Room object, see room_def
-        """
-        return self.pos
-    
     def getPos(self):
         """
         Duplicate of getRoom
-        :return: Room object, see room_def
+        :return: Int representation of location coords
         """
         return self.pos
     

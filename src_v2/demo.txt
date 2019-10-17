@@ -14,21 +14,9 @@ t/220/There is a lantern in the corner of the room. You examine it: it is lit an
 t/100/You enter the room. There is nothing here./
 t/200/You enter the room. There is nothing here./
 t/010/You enter the room. There is nothing here./
-t/110/You come slowly to your senses in a room dimly lit by flickering candle flames. &You have no memory of arriving here, nor of what circumstances caused you to be unconscious.&Beyond your own shuffling movements, the room is silent. A quick look around reveals that the room &is empty, and that you are alone. For some reason, you get the feeling that you are deep underground. &The only items in your possession are a notebook and a bag. How did you get here?/
+t/110/You come slowly to your senses in a room dimly lit by flickering candle flames. &You have no memory of arriving here, nor of what circumstances caused you to be unconscious.&Beyond your own shuffling movements, the room is silent. A quick look around reveals that the room &is empty, and that you are alone. You get the feeling that you are deep underground. &The only item in your possession is an empty bag. How did you get here?/
 t/020/You enter the room. There is nothing here, but upon closer inspection, you see that there are 13 tally marks scratched into the north wall. &Was someone else here? You decide to take note of this./
 t/120/You enter the room. There is nothing here./
 
 c/220/lantern/
 c/000/plinth/
-
-at/220/This is where the lantern was./
-at/110/This is where you woke up. There is nothing in this room./
-at/000/This is where the strange, glowing pedestal is./
-at/210/There is a dark staircase leading downwards to the east. Equipped with your lantern, you could go down. It seems the only way out./
-at/100/You enter the room. There is nothing here./
-at/200/You enter the room. There is nothing here./
-at/010/You enter the room. There is nothing here./
-at/020/This is where the strange tally marks are./
-at/120/You enter the room. There is nothing here./
-
-m/020/(strange tally marks)/

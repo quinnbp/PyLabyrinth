@@ -6,7 +6,7 @@ class Room:
     :Authors: qbp
     :Version: 1.1
     """
-    def __init__(self, room_coords, room_exits, contents=[], room_str='', alternate_str='', mark='', message='',
+    def __init__(self, room_coords, room_exits, contents=[], room_str='NO TEXT', alternate_str='', mark='', message='',
                  special_str=''):
         """
         Initializes a new room.
@@ -20,6 +20,9 @@ class Room:
         :param message: String, message left for player, default ''
         :param special_str: String, special additional text switch for interactable rooms, default ''
         """
+
+        # TODO: pare down the above list
+
         self.contents = contents
         self.mark = str(mark)
         self.exits = room_exits
@@ -115,9 +118,6 @@ class Room:
 
     def addToContents(self, item):  # for some reason, this doesn't work
         self.contents.append(str(item))
-    
-    def switchToAlt(self):  # switch from initial room text to secondary
-        self.text = self.alt
         
     def addToExits(self, string):  # add a new exit to the list
         self.exits.append(string)

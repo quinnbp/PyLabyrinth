@@ -1,6 +1,5 @@
 from labyrinth_cls import Labyrinth
 from intro_help_defs import intro
-from room_def import Room
 from char_def import Character
 
 
@@ -13,13 +12,11 @@ def main():
     # calls function to generate intro text from file
     charname = intro()
 
-    # used for player initialization
-    pre = Room('pre', [-1, -1, -1], [])
+    # initializes character
+    player = Character(charname, [], 110)  # puts player in start room
 
-    # initializes character and empty notebook
-    player = Character(charname, [], pre)
-
-    labyrinth = Labyrinth('firstfloor.txt', player)
+    labyrinth = Labyrinth('demo.txt', player)
+    labyrinth.play()
 
 
 if __name__ == main():
