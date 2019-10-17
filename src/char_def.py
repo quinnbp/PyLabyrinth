@@ -19,9 +19,7 @@ class Character:
         self.inv = inventory
         self.pos = room
         self.note = notebook
-        
-        self.state = [self.name, self.inv, self.pos]  # TODO: save function
-        
+            
     def __str__(self):
         """
         Basic string method for diagnostics

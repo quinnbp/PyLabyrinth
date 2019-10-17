@@ -31,7 +31,7 @@ class Room:
         self.alt = str(alternate_str)
         self.special = str(special_str)
         
-        self.xyz = room_coords
+        self.xyz = room_coords  # list
 
         self.enter = False
         
