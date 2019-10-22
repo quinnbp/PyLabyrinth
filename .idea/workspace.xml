@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e7ababcc-adce-413e-9925-e2e4ed3fb65f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src_v2/navigator_cls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src_v2/char_def.py" beforeDir="false" afterPath="$PROJECT_DIR$/src_v2/char_def.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_v2/demo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src_v2/demo.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src_v2/labyrinth_cls.py" beforeDir="false" afterPath="$PROJECT_DIR$/src_v2/labyrinth_cls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_v2/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src_v2/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_v2/resources/directions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src_v2/resources/directions.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src_v2/resources/intro.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src_v2/resources/intro.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src_v2/navigator_cls.py" beforeDir="false" afterPath="$PROJECT_DIR$/src_v2/navigator_cls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src_v2/room_def.py" beforeDir="false" afterPath="$PROJECT_DIR$/src_v2/room_def.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

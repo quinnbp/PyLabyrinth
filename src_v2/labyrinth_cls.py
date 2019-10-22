@@ -15,16 +15,13 @@ class Labyrinth:
     def __init__(self, fpath, player):
         """
         Generates the labyrinth data structure from a file and instantiates the dictionary
-
         :param fpath: Filepath to data defining construction of labyrinth
         """
         file = open(fpath, 'r')  # open, parse, and close data file
         self.roomDict = self.parse(file)
         file.close()
 
-        # TODO: handle specials
-        self.specials = []
-        # TODO: implement direction handler (simple)
+        self.specials = [210]
 
         # setup for object fields
         self.player = player
@@ -32,7 +29,6 @@ class Labyrinth:
 
         # setup for data fields
         self.gameSolved = False  # catches game end
-        self.reenterstr = "You have been here before."
 
     def play(self):
         """
@@ -43,27 +39,18 @@ class Labyrinth:
             coords = self.player.getPos()  # gets coords of player
             currentRoom = self.roomDict[coords]  # finds that room in the structure
 
-            # print room to screen
-            # TODO: functionalize this?
-            if currentRoom.enter:
-                print(self.reenterstr)
-            else:
-                currentRoom.entered()  # TODO: implement alt text better
-            print()
-            print(currentRoom.getText())
-            print(currentRoom.declareExits())
-
             if coords in self.specials:  # handles special cases (puzzle rooms, etc)
                 self.runSpecial(coords)
             else:  # standard case for navigation
-                newLocation = self.navigator.takeInput(currentRoom)  # pass room object, get player input
+                currentRoom.printRoom()  # print room to console
+                # takes player input, resolves character actions (take, use), and returns a new location
+                newLocation = self.navigator.takeInput(currentRoom, self.player)
                 self.player.setPos(newLocation)  # assigns new coords to player
 
     @staticmethod
     def parse(file):
         """
         Generates the labyrinth dictionary from the given file
-
         :param file: File object representing labyrinth data structure
         :return: Dictionary<int, Room> representing the labyrinth
         """

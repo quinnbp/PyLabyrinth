@@ -102,5 +102,13 @@ class Character:
         """
         self.inv.append(str(item))
 
+    def dropFromInv(self, item):
+        """
+        Drops an item from the player's inventory
+        :param item: String of item to drop
+        :return: None
+        """
+        self.inv.remove(item)
+
 
 

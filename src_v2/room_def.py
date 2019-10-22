@@ -6,31 +6,24 @@ class Room:
     :Authors: qbp
     :Version: 1.1
     """
-    def __init__(self, room_coords, room_exits, contents=[], room_str='NO TEXT', alternate_str='', mark='', message='',
-                 special_str=''):
+    def __init__(self, room_coords, room_exits, contents=[], room_str='NO TEXT', alternate_str=''):
         """
-        Initializes a new room.
+        Generates new room object
 
         :param room_coords: List of ints, coordinates for the room within the maze
         :param room_exits: List of chars, directional exits from the room
         :param contents: List of strings, items contained within room
         :param room_str: String, text to display on first entry
         :param alternate_str: String, text to display on subsequent entries
-        :param mark: String, mark left by player in room, default ''
-        :param message: String, message left for player, default ''
-        :param special_str: String, special additional text switch for interactable rooms, default ''
         """
 
-        # TODO: pare down the above list
+        self.reenterstr = "You have been here before."
 
         self.contents = contents
-        self.mark = str(mark)
         self.exits = room_exits
-        self.msg = message
 
-        self.text = str(room_str)
-        self.alt = str(alternate_str)
-        self.special = str(special_str)
+        self.text = str(room_str)  # for first visit
+        self.alt = str(alternate_str)  # after first visit, switch to alt
         
         self.coords = room_coords  # list representation
         self.xyz = self.coords[0] * 100 + self.coords[1] * 10 + self.coords[2]  # int representation
@@ -42,24 +35,21 @@ class Room:
 
     def getCoords(self):
         return self.coords
+
+    def getXyz(self):
+        return self.xyz
     
     def getFloor(self):
         return self.coords[2]
     
     def getExits(self):
         return self.exits
-    
-    def getMark(self):
-        return self.mark
 
     def getContents(self):
         return self.contents
     
     def getText(self):
         return self.text
-    
-    def getMsg(self):
-        return self.msg
 
     def setContents(self, newinvlist):  # mutator functions
         self.contents = newinvlist
@@ -70,10 +60,6 @@ class Room:
         for item in strlist[1:]:
             newstring = newstring + '\n' + str(item) 
         self.text = newstring
-
-    def setMark(self, char, string):
-        self.mark = string
-        char.note.addMark(string)
         
     def setAltStr(self, string):
         strlist = string.split('&')
@@ -81,13 +67,6 @@ class Room:
         for item in strlist[1:]:
             newstring = newstring + '\n' + str(item) 
         self.alt = newstring
-        
-    def setMsg(self, string):
-        strlist = string.split('&')
-        newstring = strlist[0]
-        for item in strlist[1:]:
-            newstring = newstring + '\n' + str(item) 
-        self.msg = newstring
         
     def entered(self):
         self.enter = True
@@ -118,6 +97,19 @@ class Room:
 
     def addToContents(self, item):  # for some reason, this doesn't work
         self.contents.append(str(item))
+
+    def removeItem(self, objectStr):
+        self.contents.remove(objectStr)
         
     def addToExits(self, string):  # add a new exit to the list
         self.exits.append(string)
+
+    def printRoom(self):
+        if self.enter:
+            print(self.reenterstr)
+        else:
+            self.entered()  # TODO: implement alt text better
+        print()
+        print(self.getText())
+        print(self.declareExits())
+        print(self.contents)  # TODO: implement fancy
