@@ -40,12 +40,12 @@ class Labyrinth:
             currentRoom = self.roomDict[coords]  # finds that room in the structure
 
             if coords in self.specials:  # handles special cases (puzzle rooms, etc)
-                self.runSpecial(coords)
+                newLocation = self.runSpecial(currentRoom)
             else:  # standard case for navigation
                 currentRoom.printRoom()  # print room to console
                 # takes player input, resolves character actions (take, use), and returns a new location
                 newLocation = self.navigator.takeInput(currentRoom, self.player)
-                self.player.setPos(newLocation)  # assigns new coords to player
+            self.player.setPos(newLocation)  # assigns new coords to player
 
     @staticmethod
     def parse(file):
@@ -94,6 +94,19 @@ class Labyrinth:
         print()
         return allrooms
 
-    def runSpecial(self, coords):
-        pass
+    def runSpecial(self, room):
+        if room.getXyz() == 210:  # first floor end room TODO: break into handlers
+            if 'lantern' in self.player.getInv():
+                print("There is a staircase descending from this room. With the lantern in hand, you could take it.")
+                response = input("Do you? (y/n) ")
+                if response[0] == 'y':
+                    print("\nDemo Completed! Thanks for playing PyLabyrinth!")
+                    self.gameSolved = True
+                    return 111  # entry condition for floor 2 (not yet implemented)
+                else:
+                    print("You decide against it.")
+                    return self.navigator.takeInput(room, self.player)
+            else:
+                room.printRoom()
+                return self.navigator.takeInput(room, self.player)
 

@@ -28,7 +28,7 @@ class Room:
         self.coords = room_coords  # list representation
         self.xyz = self.coords[0] * 100 + self.coords[1] * 10 + self.coords[2]  # int representation
 
-        self.enter = False
+        self.visited = False
         
     def __str__(self):
         return "Room(" + str(self.xyz) + " : " + str(self.exits) + " : " + str(self.contents) + ")"
@@ -51,6 +51,13 @@ class Room:
     def getText(self):
         return self.text
 
+    def getAltText(self):
+        # returns alt if nonempty, otherwise text (so we only have to set for rooms where it matters)
+        if self.alt == "":
+            return self.text
+        else:
+            return self.alt
+
     def setContents(self, newinvlist):  # mutator functions
         self.contents = newinvlist
 
@@ -67,9 +74,14 @@ class Room:
         for item in strlist[1:]:
             newstring = newstring + '\n' + str(item) 
         self.alt = newstring
+
+    def switchText(self):  # swap to alternate text after first visit
+        temp = self.text
+        self.text = self.alt
+        self.alt = self.text
         
     def entered(self):
-        self.enter = True
+        self.visited = True
         
     def declareExits(self):  # returns 'pretty' exit string to show player
         exitstring = ''
@@ -88,15 +100,25 @@ class Room:
             elif n == (len(self.exits) - 2):
                 exitstring = exitstring + ' and'
                 
-        exitstring = exitstring + '.'
+        exitstring += '.'
         
         if len(self.exits) > 1:
             return "There are exits to the" + exitstring
         else:
             return "There is an exit to the" + exitstring
 
-    def addToContents(self, item):  # for some reason, this doesn't work
-        self.contents.append(str(item))
+    def declareContents(self):
+        if len(self.contents) == 0:  # check if room empty
+            return ""
+
+        contentstring = "This room contains: "
+        for item in self.contents[:-1]:  # list items in room
+            contentstring += item + ", "
+        contentstring += self.contents[len(self.contents) - 1] + "."
+        return contentstring
+
+    def addToContents(self, item):
+        self.contents.append(item)
 
     def removeItem(self, objectStr):
         self.contents.remove(objectStr)
@@ -104,12 +126,15 @@ class Room:
     def addToExits(self, string):  # add a new exit to the list
         self.exits.append(string)
 
-    def printRoom(self):
-        if self.enter:
-            print(self.reenterstr)
+    def printRoom(self, enableReenter=True):
+        print()  # newline
+        if self.visited:
+            if enableReenter:
+                print(self.reenterstr)  # tell player revisit
+            print(self.getAltText())  # print alternate text if visited
         else:
-            self.entered()  # TODO: implement alt text better
-        print()
-        print(self.getText())
-        print(self.declareExits())
-        print(self.contents)  # TODO: implement fancy
+            self.entered()  # otherwise set visited
+            print(self.text)  # print first text
+
+        print(self.declareExits())  # print contents and exits to console
+        print(self.declareContents())

@@ -54,7 +54,7 @@ class Navigator:
             directions()  # print help and recurse
             return self.takeInput(currentRoom, player)
         elif usrin[0] in self.lookacts:
-            currentRoom.printRoom()
+            currentRoom.printRoom(False)
             return self.takeInput(currentRoom, player)
         else:
             print(self.invalid)  # catch for bad inputs
@@ -106,7 +106,7 @@ class Navigator:
             else:  # success case, object in player inv
                 print(self.gooddrop + item + ".")  # respond to player
                 player.dropFromInv(item)
-                currentRoom.addToContents(item)  # this may not work?
+                currentRoom.addToContents(item)
 
         return self.takeInput(currentRoom, player)
 

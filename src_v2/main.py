@@ -19,5 +19,4 @@ def main():
     labyrinth.play()
 
 
-if __name__ == main():
-    main()
+main()
