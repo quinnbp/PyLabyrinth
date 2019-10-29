@@ -91,7 +91,6 @@ class Labyrinth:
                         print("Invalid at line " + str(ln) + ".")
 
         print("[DEBUG] Processed " + str(ln) + " lines for " + str(len(allrooms.keys())) + " rooms.")
-        print()
         return allrooms
 
     def runSpecial(self, room):

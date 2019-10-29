@@ -1,0 +1,59 @@
+r/hole/001/ne/
+r/name/101/new/
+r/name/201/ew/
+r/name/301/wn/
+r/name/011/nes/
+r/start/111/ws/
+r/plinth/211/n/
+r/scratch1/311/ns/
+r/poi2/021/ns/
+r/floor3/121/n/
+r/roperm/221/es/
+r/arrow/321/nws/
+r/name/031/es/
+r/name/131/ews/
+r/scratch2/231/w/
+r/note1/331/s/
+
+t/231/You enter the room. Looking around, you see a message scratched into the wall: BRKBRK"NO ESCAPE" BRKBRKIt seems to have been done with an improvised knife, which is shattered on the floor nearby. The wall also shows evidence of... claw marks?/
+t/101/You enter the room. There is nothing here./
+t/201/You enter the room. There is nothing here./
+t/301/You enter the room. There is nothing here./
+t/011/You enter the room. There is nothing here./
+t/111/You descend with your lantern in hand. Your light illuminates just enough to make your way. BRKWhen you reach the bottom, you swing your lantern around and observe the room. It is very similar to those on the floor above, BRKbut without the candle light./
+t/211/You enter the room. There is another strange, glowing pedestal in here. This one glows red. There still seems to be nothing you can do with them./
+t/311/You enter the room. There is nothing here./
+t/021/You enter the room. There is nothing here./
+t/121/You enter the room. There is a steep drop to the south, where a staircase used to be. You can see the remaining broken stone BRKon the ground. You are certain that the fall would kill or severely injure you, so you cannot proceed without BRKa rope or ladder, but this does seem to be the only way to go onward./
+t/221/You enter the room. There is a coil of rope in the corner of the room. Do you take the rope?/
+t/321/You enter the room. There is nothing here, but as you illuminate the room with your lantern, you see an arrow drawn on the floor. BRKIt looks to be drawn with charcoal, and it points north. Could this be the same person who left the tally marks? BRKYou decide to take note of this, but do you want to follow it?/
+t/031/You enter the room. There is nothing here./
+t/131/You enter the room. There is nothing here./
+t/001/You enter the room. There is nothing here, but as you illuminate the room, you see a haunting message scratched into the wall: BRKBRK"I HAVE TO GET OUT OF HERE! I CAN'T--" BRKBRKIt stops midway through the sentence.../
+t/331/You enter the room. There is a piece of paper in the middle of the room. It reads: BRKBRK"I don't know if there's anyone reading this. I hope someone is. I don't know how I got here. BRKI woke up in a room on the floor above. I saw the tally marks on the wall upstairs and the two messages down here... disturbing stuff. BRKI'm writing this in case there's a sane person after me. I'll leave notes whenever I can. I also left half of the rope I found BRKin the room south-west of here, in case its of any use. BRK        -Alexius" BRKBRKYou decide to note down the message. Do you take the note?/
+
+c/331/note/
+c/221/rope/
+c/211/plinth/
+
+at/001/You enter the room. There is nothing here./
+at/101/You enter the room. There is nothing here./
+at/201/You enter the room. There is nothing here./
+at/301/You enter the room. There is nothing here./
+at/011/You enter the room. There is nothing here./
+at/111/You enter the room. This is where you descended from the floor above./
+at/211/You enter the room. This is where the second glowing pedestal is./
+at/311/You enter the room. There is nothing here./
+at/021/You enter the room. There is nothing here./
+at/121/You enter the room. There is a steep drop to the south, where a staircase used to be. You can see the remaining broken stone BRKon the ground. With the rope, you could go down to the next floor./
+at/221/You enter the room. There is where the rope was./
+at/321/You enter the room. This is where Alexius' arrow drawing is./
+at/031/You enter the room. There is nothing here./
+at/131/You enter the room. There is nothing here./
+at/231/You enter the room. There is where the message was scratched into the wall./
+at/331/You enter the room. This is where Alexius' note was./
+
+m/321/(arrow)/
+m/231/NO ESCAPE/
+m/001/I HAVE TO GET OUT OF HERE! I CAN'T--/
+m/331/I don't know if there's anyone reading this. I hope someone is... (note from Alexius)/

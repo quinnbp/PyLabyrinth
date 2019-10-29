@@ -6,82 +6,92 @@ class Room:
     :Authors: qbp
     :Version: 1.1
     """
-    def __init__(self, room_coords, room_exits, contents=[], room_str='NO TEXT', alternate_str=''):
+    def __init__(self, name, room_coords, room_exits, contents=[], room_str='', alternate_str='', mark='', message='',
+                 special_str=''):
         """
-        Generates new room object
+        Initializes a new room.
 
+        :param name: String, identification for points of interest
         :param room_coords: List of ints, coordinates for the room within the maze
         :param room_exits: List of chars, directional exits from the room
         :param contents: List of strings, items contained within room
         :param room_str: String, text to display on first entry
         :param alternate_str: String, text to display on subsequent entries
+        :param mark: String, mark left by player in room, default ''
+        :param message: String, message left for player, default ''
+        :param special_str: String, special additional text switch for interactable rooms, default ''
         """
-
-        self.reenterstr = "You have been here before."
-
+        self.name = str(name)
         self.contents = contents
+        self.mark = str(mark)
         self.exits = room_exits
+        self.msg = message
 
-        self.text = str(room_str)  # for first visit
-        self.alt = str(alternate_str)  # after first visit, switch to alt
+        self.text = str(room_str)
+        self.alt = str(alternate_str)
+        self.special = str(special_str)
         
-        self.coords = room_coords  # list representation
-        self.xyz = self.coords[0] * 100 + self.coords[1] * 10 + self.coords[2]  # int representation
+        self.xyz = room_coords  # list
 
-        self.visited = False
+        self.enter = False
         
     def __str__(self):
-        return "Room(" + str(self.xyz) + " : " + str(self.exits) + " : " + str(self.contents) + ")"
-
+        return "Room(" + str(self.name) + " : " + str(self.xyz) + " : " + str(self.exits) + " : " + str(self.contents) + ")"
+    
+    def getName(self):  # accessor functions
+        return self.name
+    
     def getCoords(self):
-        return self.coords
-
-    def getXyz(self):
         return self.xyz
     
     def getFloor(self):
-        return self.coords[2]
+        return self.xyz[2]
     
     def getExits(self):
         return self.exits
+    
+    def getMark(self):
+        return self.mark
 
     def getContents(self):
         return self.contents
     
     def getText(self):
         return self.text
-
-    def getAltText(self):
-        # returns alt if nonempty, otherwise text (so we only have to set for rooms where it matters)
-        if self.alt == "":
-            return self.text
-        else:
-            return self.alt
+    
+    def getMsg(self):
+        return self.msg
 
     def setContents(self, newinvlist):  # mutator functions
         self.contents = newinvlist
 
     def setText(self, string):
-        strlist = string.split('&')
+        strlist = string.split('BRK')
         newstring = strlist[0]
         for item in strlist[1:]:
             newstring = newstring + '\n' + str(item) 
         self.text = newstring
+
+    def setMark(self, char, string):
+        self.mark = string
+        char.note.addMark(string)
         
     def setAltStr(self, string):
-        strlist = string.split('&')
+        strlist = string.split('BRK')
         newstring = strlist[0]
         for item in strlist[1:]:
             newstring = newstring + '\n' + str(item) 
         self.alt = newstring
-
-    def switchText(self):  # swap to alternate text after first visit
-        temp = self.text
-        self.text = self.alt
-        self.alt = self.text
+        
+    def setMsg(self, string):
+        strlist = string.split('BRK')
+        newstring = strlist[0]
+        for item in strlist[1:]:
+            newstring = newstring + '\n' + str(item) 
+        self.msg = newstring
         
     def entered(self):
-        self.visited = True
+        self.enter = True
         
     def declareExits(self):  # returns 'pretty' exit string to show player
         exitstring = ''
@@ -100,41 +110,18 @@ class Room:
             elif n == (len(self.exits) - 2):
                 exitstring = exitstring + ' and'
                 
-        exitstring += '.'
+        exitstring = exitstring + '.'
         
         if len(self.exits) > 1:
             return "There are exits to the" + exitstring
         else:
             return "There is an exit to the" + exitstring
 
-    def declareContents(self):
-        if len(self.contents) == 0:  # check if room empty
-            return ""
-
-        contentstring = "This room contains: "
-        for item in self.contents[:-1]:  # list items in room
-            contentstring += item + ", "
-        contentstring += self.contents[len(self.contents) - 1] + "."
-        return contentstring
-
-    def addToContents(self, item):
-        self.contents.append(item)
-
-    def removeItem(self, objectStr):
-        self.contents.remove(objectStr)
+    def addToContents(self, item):  # for some reason, this doesn't work
+        self.contents.append(str(item))
+    
+    def switchToAlt(self):  # switch from initial room text to secondary
+        self.text = self.alt
         
     def addToExits(self, string):  # add a new exit to the list
         self.exits.append(string)
-
-    def printRoom(self, enableReenter=True):
-        print()  # newline
-        if self.visited:
-            if enableReenter:
-                print(self.reenterstr)  # tell player revisit
-            print(self.getAltText())  # print alternate text if visited
-        else:
-            self.entered()  # otherwise set visited
-            print(self.text)  # print first text
-
-        print(self.declareExits())  # print contents and exits to console
-        print(self.declareContents())

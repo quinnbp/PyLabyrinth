@@ -27,7 +27,7 @@ def intro():
     else:
         charname = namein
         
-    print("Welcome to the labyrinth, " + charname + ". \n")  # TODO: Add input validation
+    print("Welcome to the labyrinth, " + charname + ". \n")
     
     return charname
 
