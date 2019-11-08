@@ -47,8 +47,7 @@ class Labyrinth:
                 newLocation = self.navigator.takeInput(currentRoom, self.player)
             self.player.setPos(newLocation)  # assigns new coords to player
 
-    @staticmethod
-    def parse(file):
+    def parse(self, file):
         """
         Generates the labyrinth dictionary from the given file
         :param file: File object representing labyrinth data structure
