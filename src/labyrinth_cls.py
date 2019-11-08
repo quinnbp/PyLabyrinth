@@ -93,6 +93,11 @@ class Labyrinth:
         return allrooms
 
     def runSpecial(self, room):
+        """
+        Generates the labyrinth dictionary from the given file
+        :param room: Room object representation of special state
+        :return: Returns recurse to takeInput() -- new room coords
+        """
         if room.getXyz() == 210:  # first floor end room TODO: break into handlers
             if 'lantern' in self.player.getInv():
                 print("There is a staircase descending from this room. With the lantern in hand, you could take it.")
