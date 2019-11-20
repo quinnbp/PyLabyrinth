@@ -1,3 +1,5 @@
+co/First floor starts here
+
 r/000/n/
 r/100/ne/
 r/200/nw/
@@ -24,3 +26,5 @@ at/110/This is the room you woke up in. It is as empty as it was then./
 at/020/This is the room where you found the marks in the wall./
 
 c/220/lantern/
+
+co/Second floor starts here

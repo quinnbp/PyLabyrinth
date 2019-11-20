@@ -78,7 +78,7 @@ class Room:
     def switchText(self):  # swap to alternate text after first visit
         temp = self.text
         self.text = self.alt
-        self.alt = self.text
+        self.alt = temp
         
     def entered(self):
         self.visited = True

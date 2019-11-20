@@ -17,7 +17,7 @@ class Labyrinth:
         Generates the labyrinth data structure from a file and instantiates the dictionary
         :param fpath: Filepath to data defining construction of labyrinth
         """
-        self.roomdict = {}
+        self.roomDict = {}
         file = open(fpath, 'r')  # open, parse, and close data file
         self.parse(file)
         file.close()
@@ -83,15 +83,13 @@ class Labyrinth:
                         r.setContents(line[2:])
                     elif line[0] == 'at':
                         r.setAltStr(line[2])
-                    elif line[0] == 'm':
-                        r.setMsg(line[2])
                     elif line[0] == 'co':
                         continue  # pass by comment lines within the file
                     else:
                         print("Invalid at line " + str(ln) + ".")
 
         print("[DEBUG] Processed " + str(ln) + " lines for " + str(len(allrooms.keys())) + " rooms.")
-        self.roomdict = allrooms
+        self.roomDict = allrooms
 
     def runSpecial(self, room):
         """
@@ -113,4 +111,3 @@ class Labyrinth:
             else:
                 room.printRoom()
                 return self.navigator.takeInput(room, self.player)
-
