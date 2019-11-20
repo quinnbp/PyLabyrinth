@@ -17,8 +17,9 @@ class Labyrinth:
         Generates the labyrinth data structure from a file and instantiates the dictionary
         :param fpath: Filepath to data defining construction of labyrinth
         """
+        self.roomdict = {}
         file = open(fpath, 'r')  # open, parse, and close data file
-        self.roomDict = self.parse(file)
+        self.parse(file)
         file.close()
 
         self.specials = [210]
@@ -53,7 +54,7 @@ class Labyrinth:
         :param file: File object representing labyrinth data structure
         :return: Dictionary<int, Room> representing the labyrinth
         """
-        allrooms = {}
+        allrooms = dict()
         ln = 0
         for line_raw in file:
             ln += 1
@@ -90,7 +91,7 @@ class Labyrinth:
                         print("Invalid at line " + str(ln) + ".")
 
         print("[DEBUG] Processed " + str(ln) + " lines for " + str(len(allrooms.keys())) + " rooms.")
-        return allrooms
+        self.roomdict = allrooms
 
     def runSpecial(self, room):
         """
